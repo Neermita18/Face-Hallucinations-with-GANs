@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import cv2
+import altair as alt
 import matplotlib.pyplot as plt
 import umap
 import dlib
