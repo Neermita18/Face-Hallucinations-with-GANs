@@ -188,5 +188,3 @@ if img1_file and img2_file:
 
     if st.button("Analyze"):
         analyze_images(image1, image2, title)
-
-
