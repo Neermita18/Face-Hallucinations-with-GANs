@@ -9,22 +9,15 @@ from io import BytesIO
 from imutils import face_utils
 import os
 
-# Allow user to upload the .dat file
-uploaded_predictor = st.file_uploader("Upload the shape_predictor_68_face_landmarks.dat file", type=["dat"])
+predictor_path = "shape_predictor_68_face_landmarks.dat"
 
-# If the user uploads the .dat file
-if uploaded_predictor is not None:
-    # Save the uploaded file to disk
-    predictor_path = "shape_predictor_68_face_landmarks.dat"
-    with open(predictor_path, "wb") as f:
-        f.write(uploaded_predictor.getbuffer())
-
+# Check if the file exists
+if os.path.exists(predictor_path):
     # Load the Dlib predictor
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor(predictor_path)
-
 else:
-    st.error("Please upload the 'shape_predictor_68_face_landmarks.dat' file.")
+    st.error(f"Could not find {predictor_path}. Please make sure the file is in the correct location.")
     st.stop()
 
 # Rest of the code...
